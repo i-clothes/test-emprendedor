@@ -1,24 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IAppoint Clothes</title>
+    <title>IAppoint</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="IAppoint" />
+    <meta property="og:image" content="https://e40f57-45.myshopify.com/cdn/shop/files/Blanco_borde_negro.png?v=1720817642&width=50" />
+    <link rel="icon" href="https://e40f57-45.myshopify.com/cdn/shop/files/Blanco_borde_negro.png?v=1720817642&width=50" type="image/png/jpg">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+<script src="confetti.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        
+        body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Raleway', sans-serif;
+}
+
+.header, .footer {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.header {
+    top: 0;
+    height: 95px;
+    background: linear-gradient(to bottom, #000000, rgb(4 3 3 / 58%)), url(tu-imagen-de-fondo.jpg);
+    backdrop-filter: blur(10px);
+}
+
+.footer {
+    bottom: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgb(153 193 31 / 58%)), url(tu-imagen-de-fondo.jpg);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    width: 200px; /* Ajusta el tamaño según tus necesidades */
+    margin: 10px;
+}
+
+.icono-izq, .icono-der {
+    width: 30px; /* Ajusta el tamaño según tus necesidades */
+    margin: 15px;
+}
+
+
+.categoria-imagen {
+    width: 60px; /* Ajusta el tamaño según tus necesidades */
+    height: 60px; /* Ajusta el tamaño según tus necesidades */
+    margin-right: 10px;
+}
+
+.fa-star, .fa-comments, .fa-phone, .fa-whatsapp {
+    color: white;
+    font-size: 24px; /* Tamaño de los iconos */
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgb(18 18 18 / 58%)), url(tu-imagen-de-fondo.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: 2000;
+}
+
+    .popup-content {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+    }
+
+    .popup-content input,
+    .popup-content button {
+        margin: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .popup-content select {
+        margin: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    
+
+    .popup-button {
+    background-color: #ff0505;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+   
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .popup-content {
+            width: 90%;
         }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-        .emprendedores, .deportes, .skills {
+    }
+
+.video-container {
+    width: 100%;
+    height: 100%;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto asegura que el video cubra todo el contenedor sin deformarse */
+}
+
+
+.video-container video {
+    pointer-events: none; /* Deshabilita clics y otros eventos del mouse */
+}
+
+
+.producto {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.producto div {
+    margin: 0 10px;
+}
+
+.producto h1, .producto p {
+    margin: 0;
+}
+
+
+.emprendedores, .deportes, .skills, .ropas {
             display: none;
             max-width: 1200px;
             margin: auto;
@@ -44,8 +202,8 @@
         }
         .emprendedor img, .deporte img, .skill img {
             max-width: 100%;
-            height: auto;
-            width: 100px;
+            height: 50px;
+            width: 50px;
         }
         .selected {
             border: 3px solid green;
@@ -57,78 +215,147 @@
             100% { opacity: 1; }
         }
 
-        .video-container {
-    width: 100%;
-    height: 100%;
-    }
+h2 {
+    margin: 0;
+}
 
-    .video-container video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Esto asegura que el video cubra todo el contenedor sin deformarse */
-    }
+.premio {
+    display: none;
+    /* Aquí puedes añadir más estilos si es necesario */
+}
 
 
-    .video-container video {
-        pointer-events: none; /* Deshabilita clics y otros eventos del mouse */
-    }
     </style>
 </head>
 <body>
-    <header>
-        <h1>¿Qué tipo de emprendedor eres?</h1>
-    </header>
-    <section class="emprendedores section-active">
-        <div class="emprendedor" onclick="selectEmprendedor(this)">
-            <img src="serggop.jpg" alt="">
-            <h2>Llados</h2>
-            <p>¿Qué tal máquina?</p>
+
+<div class="header">
+    <a href="tel:34608132826"><i class="fa-solid fa-phone"></i></a>
+    <img src="https://e40f57-45.myshopify.com/cdn/shop/files/Blanco_borde_negro.png?v=1720817642&width=50" class="logo" style="width: 50px;">
+    <a href="https://api.whatsapp.com/send?phone=+34608132826&text=Hola%20buenas%20quería%20hacer%20un%20pedido"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-button" onclick="cerrarPopup()">×</span>
+        <h1 class="pregunta">¿Qué Tipo de Emprendedor Eres?</h1>
+        <div class="progress"></div>
+        <section class="emprendedores section-active">
+            <div class="emprendedor" onclick="selectEmprendedor(this)">
+                <img src="llados.jpg" alt="">
+                <h2>Llados</h2>
+                <p>El emprendedor más disruptivo y controversial. Vive en Miami , su profesión es coach de negocios.</p>
+            </div>
+            <div class="emprendedor" onclick="selectEmprendedor(this)">
+                <img src="carlota.jpg" alt="">
+                <h2>Carlota Sabina</h2>
+                <p>La emprendedora más de moda , vive en Dubai y su proyecto es la formación de canales automatizados de Youtube</p>
+            </div>
+            <div class="emprendedor" onclick="selectEmprendedor(this)">
+                <img src="pedro.jpg" alt="">
+                <h2>Pedro Buerbaum</h2>
+                <p>Fundador de Blast una empresa de inversión en startups , creador de la Pollería y muchos proyectos más</p>
+            </div>
+            <div class="emprendedor" onclick="selectEmprendedor(this)">
+                <img src="sergio.jpg" alt="">
+                <h2>Sergio Begueria</h2>
+                <p>Conocido por su canal , Tengo un plan. Un referente de emprendedor en España</p>
+            </div>
+        </section>
+        <section class="deportes">
+            <div class="deporte" onclick="selectEmprendedor(this)">
+                <img src="1.png" alt="">
+                <h2>Ciclismo</h2>
+                
+            </div>
+            <div class="deporte" onclick="selectEmprendedor(this)">
+                <img src="2.png" alt="">
+                <h2>Gym</h2>
+            </div>
+            <div class="deporte" onclick="selectEmprendedor(this)">
+                <img src="3.png" alt="">
+                <h2>Fútbol</h2>
+            </div>
+            <div class="deporte" onclick="selectEmprendedor(this)">
+                <img src="4.png" alt="">
+                <h2>Motocross</h2>
+            </div>
+        </section>
+        <section class="skills">
+            <div class="skill" onclick="selectEmprendedor(this)">
+                <img src="marketing.png" alt="">
+                <h2>Marketing Digital</h2>
+            </div>
+            <div class="skill" onclick="selectEmprendedor(this)">
+                <img src="networking.png" alt="">
+                <h2>Networking</h2>
+            </div>
+            <div class="skill" onclick="selectEmprendedor(this)">
+                <img src="Técnico.png" alt="">
+                <h2>Habilidades Técnicas / Creativas</h2>
+            </div>
+            <div class="skill" onclick="selectEmprendedor(this)">
+                <img src="code.png" alt="">
+                <h2>Desarrollador</h2>
+            </div>
+        </section>
+        <section class="ropas">
+            <div class="ropa" onclick="selectEmprendedor(this)">
+                <h2>Luxury Style</h2>
+                <img src="luxury.png" style="width: 150px">
+            </div>
+            <div class="ropa" onclick="selectEmprendedor(this)">
+                <h2>Urban Style</h2>
+                <img src="urban.jpeg" style="width: 150px">
+            </div>
+        </section>
+        <div class="premio" >
+           <div>
+            <h2>Cumples con lo que buscamos ...</h2>
+           <p>Has respondido justo lo que necesitamos para saber que eres uno de los nuestros</p>
+           <p>Tienes un 25% de descuento</p> <br>
+           <span style="background-color: red; color : white; padding : 10px; margin: 10px;">Accede con la palabra "PREMIO"</span>
+          <a href="https://e40f57-45.myshopify.com/"> <img src="ropa.png" style="width: 100%"></a>
+          <p>Serás redirigido en <span id="tiempo">1</span></p>
+           </div>
         </div>
-        <div class="emprendedor" onclick="selectEmprendedor(this)">
-            <img src="serggop.jpg" alt="">
-            <h2>Llados</h2>
-            <p>¿Qué tal máquina?</p>
-        </div>
-        <div class="emprendedor" onclick="selectEmprendedor(this)">
-            <img src="serggop.jpg" alt="">
-            <h2>Llados</h2>
-            <p>¿Qué tal máquina?</p>
-        </div>
-        <div class="emprendedor" onclick="selectEmprendedor(this)">
-            <img src="serggop.jpg" alt="">
-            <h2>Llados</h2>
-            <p>¿Qué tal máquina?</p>
-        </div>
-        <div class="emprendedor" onclick="selectEmprendedor(this)">
-            <img src="serggop.jpg" alt="">
-            <h2>Llados</h2>
-            <p>¿Qué tal máquina?</p>
-        </div>
-        <div class="emprendedor" onclick="selectEmprendedor(this)">
-            <img src="serggop.jpg" alt="">
-            <h2>Llados</h2>
-            <p>¿Qué tal máquina?</p>
-        </div>
-    </section>
-    <section class="deportes">
-        <div class="deporte">
-            <img src="" alt="">
-            <h2>Ciclismo</h2>
-        </div>
-    </section>
-    <section class="skills">
-        <div class="skill">
-            <img src="" alt="">
-            <h2>Marketing Digital</h2>
-        </div>
-    </section>
-    <div class="video-container" id="video1" data-nombre="Sorteo" data-descripcion="Participa Hoy en Nuestro Sorteo 🐶🐱🐦" data-precio="⭐⭐⭐⭐">
-        <video autoplay loop muted playsinline>
-            <source src="summer.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-        </video>
     </div>
-    <script>
+</div>
+
+
+
+
+
+<div class="video-container" id="video1" data-nombre="Test" data-descripcion="Tipo de Emprendedor que eres" data-precio="⭐⭐⭐⭐">
+    <video autoplay loop muted playsinline>
+        <source src="barco.mp4" type="video/mp4">
+        Tu navegador no soporta videos.
+    </video>
+</div>
+
+
+
+<div class="producto">
+    <div>
+        <h1 id="nombreProducto">Nombre del Producto</h1>
+        <p id="descripcionProducto">Descripción del Producto</p>
+    </div>
+    <div>
+        <p id="precioProducto">Precio</p>
+    </div>
+</div>
+
+
+<script>
+
+    window.onload = function() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+    function cerrarPopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     let observer = new IntersectionObserver((entries, observer) => {
@@ -151,23 +378,54 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-        function selectEmprendedor(element) {
-            // Remove the selected class from any previously selected element
-            var selected = document.querySelector('.selected');
-            if (selected) {
-                selected.classList.remove('selected');
-            }
-            // Add the selected class to the clicked element
-            element.classList.add('selected');
 
-            // Move to the next section
-            var currentSection = document.querySelector('.section-active');
-            currentSection.classList.remove('section-active');
-            var nextSection = currentSection.nextElementSibling;
-            if (nextSection) {
-                nextSection.classList.add('section-active');
-            }
+
+ 
+function selectEmprendedor(element) {
+    var selected = document.querySelector('.selected');
+    if (selected) {
+        selected.classList.remove('selected');
+    }
+    element.classList.add('selected');
+
+    var nombre = element.querySelector('h2').textContent;
+    var currentStorage = localStorage.getItem('selectedNombre');
+    if (currentStorage) {
+        localStorage.setItem('selectedNombre', currentStorage + ' | ' + nombre);
+    } else {
+        localStorage.setItem('selectedNombre', nombre);
+    }
+
+    setTimeout(() => {
+        var currentSection = document.querySelector('.section-active');
+        currentSection.classList.remove('section-active');
+        var nextSection = currentSection.nextElementSibling;
+        if (nextSection && !nextSection.classList.contains('premio')) {
+            nextSection.classList.add('section-active');
+        } else if (nextSection && nextSection.classList.contains('premio')) {
+            document.querySelector('.pregunta').style.display = "none";
+            var premioDiv = document.querySelector('.premio');
+            premioDiv.style.display = 'block'; // Mostrar el div premio como flex
+            countdownRedirect(5, 'https://e40f57-45.myshopify.com/'); // Redireccionar en 5 segundos
         }
-    </script>
+    }, 500); // Retraso de 2 segundos
+}
+
+function countdownRedirect(seconds, url) {
+    var tiempoSpan = document.getElementById('tiempo');
+    tiempoSpan.textContent = seconds;
+    var countdown = setInterval(() => {
+        seconds--;
+        tiempoSpan.textContent = seconds;
+        if (seconds <= 0) {
+            clearInterval(countdown);
+            window.location.href = url;
+        }
+    }, 1000);
+}
+
+
+
+</script>
 </body>
 </html>
